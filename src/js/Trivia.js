@@ -42,13 +42,12 @@ import {triviaBoard} from './questions'
   /* displays the start of quiz message */ 
   displayStartOfTest() {
     if(document.getElementById("msgStatus")) {
+      document.getElementById("msgStatus").className = alerts["startQuiz"].class
+      document.getElementById("msgStatus").innerHTML = alerts["startQuiz"].msg
       setTimeout(() => {
-           document.getElementById("msgStatus").className = alerts["startQuiz"].class
-           document.getElementById("msgStatus").innerHTML = alerts["startQuiz"].msg
-      },500)
-
-      setTimeout(() => {
-           document.getElementById("msgStatus").className = "invisible " +alerts["startQuiz"].class
+           alerts["startQuiz"].class = "invisible " + alerts["startQuiz"].class
+           document.getElementById("msgStatus").className = alerts["startQuiz"].class 
+           document.getElementById("msgStatus").innerHTML = null
       },3000)
     }
   }
@@ -70,8 +69,8 @@ import {triviaBoard} from './questions'
       if(document.getElementById("msgStatus") && (this.state.elapsedMinutes === this.state.questionsAnswered)) {
         this.resetOptions()
         this.moveToNextQuestion()
-        if(document.getElementById("msgStatus"))document.getElementById("msgStatus").className = alerts["timeOut"].class
-        if(document.getElementById("msgStatus"))document.getElementById("msgStatus").innerHTML = alerts["timeOut"].msg
+        if(document.getElementById("msgStatus")) document.getElementById("msgStatus").className = alerts["timeOut"].class
+        if(document.getElementById("msgStatus")) document.getElementById("msgStatus").innerHTML = alerts["timeOut"].msg
         setTimeout(() => {
             if(document.getElementById("msgStatus"))
             document.getElementById("msgStatus").className = "invisible "+alerts["timeOut"].class
@@ -137,6 +136,7 @@ import {triviaBoard} from './questions'
         questionsAnswered: this.state.questionsAnswered+1
       })
     },minuteInMs)
+    this.displayStartOfTest()
   }
 
   /* move to the next question */
