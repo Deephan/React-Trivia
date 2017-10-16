@@ -17,8 +17,8 @@ export function Score(props) {
 
 
 function selectAnswer(props) {
-  if(_.includes(props.currentTarget.classList, "btn-success") === true)
-    document.getElementById(props.currentTarget.id).className = "btn btn-outline-warning btn-lg btn-block"
+  if(_.includes(props.currentTarget.classList, "btn-warning") === true)
+    document.getElementById(props.currentTarget.id).className = "btn btn-outline-danger btn-lg btn-block"
   else
     document.getElementById(props.currentTarget.id).className = "btn btn-warning btn-lg btn-block"
 }
