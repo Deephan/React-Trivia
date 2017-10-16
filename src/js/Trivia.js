@@ -6,7 +6,7 @@ import '../css/bootstrap.min.css';
 import _ from 'lodash';
 import Timer from './Timer'
 import {Score, Question, AnswerPanel, Progress, ProgressBar} from './Components'
-import {alerts} from './constants'
+import {alerts, noOfOptions, minuteInMs} from './constants'
 import {triviaBoard} from './questions'
 
 
@@ -34,7 +34,7 @@ import {triviaBoard} from './questions'
 
   /* resets the option classes after every question */
   resetOptions() {
-    _.range(5).forEach((ele) => {
+    _.range(noOfOptions).forEach((ele) => {
        document.getElementById("opt"+ele).className = "btn btn-outline-danger btn-lg btn-block"
     })  
   }
@@ -114,7 +114,7 @@ import {triviaBoard} from './questions'
     let correctAnswer = ''
     let _answer    = triviaBoard[this.state.questionsAnswered].a
     _.range(this.state.noOfOptions).forEach(function(ele) {
-      givenAnswer += (_.includes(document.getElementById('opt'+(ele)).classList, "btn-success") === true) ? '1' : '0'
+      givenAnswer += (_.includes(document.getElementById('opt'+(ele)).classList, "btn-warning") === true) ? '1' : '0'
       correctAnswer += (_.includes(_answer, ele+1) === true) ? '1' : '0'
     })
     this.calculateScore(givenAnswer, correctAnswer)
@@ -136,7 +136,7 @@ import {triviaBoard} from './questions'
         elapsedMinutes: this.state.elapsedMinutes+1,
         questionsAnswered: this.state.questionsAnswered+1
       })
-    },60000)
+    },minuteInMs)
   }
 
   /* move to the next question */
@@ -160,13 +160,13 @@ import {triviaBoard} from './questions'
 
   /* renders the view */
   render() {
-    let question = (this.state.questionsAnswered === triviaBoard.length) ? {q:'',c:'',a:'',d:''} : triviaBoard[this.state.questionsAnswered]
+    let question = (this.state.questionsAnswered >= triviaBoard.length) ? {q:'',c:'',a:'',d:''} : triviaBoard[this.state.questionsAnswered]
     if(this.state.start === false) {
       return(
         <button type="button" onClick={this.startTest} className="btn btn-success">Start Trivia</button>
       )
     } else {
-      if(this.state.questionsAnswered === triviaBoard.length) {
+      if(this.state.questionsAnswered >= triviaBoard.length) {
         return(
          <Score score={this.state.score}/>
         )

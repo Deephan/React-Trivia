@@ -26,7 +26,7 @@ function selectAnswer(props) {
 
 /* Display the options */
 export function AnswerPanel(props) {
-  let _options = props.opts
+  let _options = (props.opts) ? (props.opts) : []
   return(
     <ul>
     {
