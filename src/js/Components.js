@@ -18,9 +18,9 @@ export function Score(props) {
 
 function selectAnswer(props) {
   if(_.includes(props.currentTarget.classList, "btn-success") === true)
-    document.getElementById(props.currentTarget.id).className = "btn btn-outline-primary btn-lg btn-block"
+    document.getElementById(props.currentTarget.id).className = "btn btn-outline-warning btn-lg btn-block"
   else
-    document.getElementById(props.currentTarget.id).className = "btn btn-success btn-lg btn-block"
+    document.getElementById(props.currentTarget.id).className = "btn btn-warning btn-lg btn-block"
 }
 
 export function AnswerPanel(props) {
@@ -31,7 +31,7 @@ export function AnswerPanel(props) {
       _options.map((option, index) => {
         let _id = "opt"+index
         return(
-          <button type="button" id={_id} onClick = {selectAnswer} className="btn btn-outline-primary btn-lg btn-block">{option}</button>
+          <button type="button" id={_id} onClick = {selectAnswer} className="btn btn-outline-danger btn-lg btn-block">{option}</button>
         )
       })
     }

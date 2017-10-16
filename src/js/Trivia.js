@@ -35,7 +35,7 @@ import {triviaBoard} from './questions'
 
   resetOptions() {
     _.range(5).forEach((ele) => {
-       document.getElementById("opt"+ele).className = "btn btn-outline-primary btn-lg btn-block"
+       document.getElementById("opt"+ele).className = "btn btn-outline-danger btn-lg btn-block"
     })  
   }
 
@@ -183,7 +183,7 @@ import {triviaBoard} from './questions'
                       <div id="msgStatus"></div>
                       <br/>
                       <div id="info" className="d-flex justify-content-center alert alert-secondary alert-dismissible fade show" role="dialog">
-                        Time per question: 3 Minutes<br/>
+                        Time per question: 1 Minute<br/>
                       </div>
                      <br/>
                     </div>
