@@ -2,6 +2,7 @@ import React from 'react';
 import {alerts} from './constants'
 import _ from 'lodash';
 
+/* Displays the final score */
 export function Score(props) {
     return(
         <div>
@@ -15,7 +16,7 @@ export function Score(props) {
     )
   }
 
-
+/* Toggle classes on option click */
 function selectAnswer(props) {
   if(_.includes(props.currentTarget.classList, "btn-warning") === true)
     document.getElementById(props.currentTarget.id).className = "btn btn-outline-danger btn-lg btn-block"
@@ -23,6 +24,7 @@ function selectAnswer(props) {
     document.getElementById(props.currentTarget.id).className = "btn btn-warning btn-lg btn-block"
 }
 
+/* Display the options */
 export function AnswerPanel(props) {
   let _options = props.opts
   return(
@@ -39,16 +41,19 @@ export function AnswerPanel(props) {
   )
 }
 
+/* Display the question */
 export function Question(props) {
   return (<p align="center"><strong>{props.question}</strong></p>)
 }
 
+/* Display the progress status */
 export function Progress(props) {
   return(
       <h5> Progress: {props.questionsAnswered} out of {props.noOfOptions} </h5>
   )
 }
 
+/* Display the progress status */
 export function ProgressBar(props) {
  {
     let _width = (props.questionsAnswered/ props.noOfOptions)*100

@@ -32,13 +32,14 @@ import {triviaBoard} from './questions'
     this.resetOptions = this.resetOptions.bind(this)
   }
 
-
+  /* resets the option classes after every question */
   resetOptions() {
     _.range(5).forEach((ele) => {
        document.getElementById("opt"+ele).className = "btn btn-outline-danger btn-lg btn-block"
     })  
   }
 
+  /* displays the start of quiz message */ 
   displayStartOfTest() {
     if(document.getElementById("msgStatus")) {
       setTimeout(() => {
@@ -52,6 +53,7 @@ import {triviaBoard} from './questions'
     }
   }
 
+  /* displays the end of quiz message */
   displayEndOfTest() {
     if(document.getElementById("msgStatus")) {
       document.getElementById("msgStatus").className = alerts["endOfTest"].class
@@ -62,6 +64,7 @@ import {triviaBoard} from './questions'
     }
   }
 
+  /* displays the timeout message */
   displayTimeOut() {
     if(this.state.questionsAnswered > 0) {
       if(document.getElementById("msgStatus") && (this.state.elapsedMinutes === this.state.questionsAnswered)) {
@@ -77,6 +80,7 @@ import {triviaBoard} from './questions'
     }
   }
 
+  /* displays move onto next question message */
   displayNextQuestion() {
     if(document.getElementById("msgStatus")) {
       if(document.getElementById("msgStatus")) document.getElementById("msgStatus").className = alerts["nextQuestion"].class
@@ -89,6 +93,7 @@ import {triviaBoard} from './questions'
   }
 
 
+  /* calculate the score for each question */
   calculateScore(currentAnswer, givenAnswer) {
     let currentAns = _.split(currentAnswer, '')
     let givenAns = _.split(givenAnswer, '')
@@ -102,6 +107,8 @@ import {triviaBoard} from './questions'
     })
   }
 
+
+  /* handle events after submitting every answer */
   handleSubmit(event) {
     let givenAnswer = ''
     let correctAnswer = ''
@@ -116,6 +123,7 @@ import {triviaBoard} from './questions'
     this.resetOptions()
   }
 
+  /* starts the quiz */
   startTest() {
     if(this.state.start === false) {
       this.setState({start: true})
@@ -131,6 +139,7 @@ import {triviaBoard} from './questions'
     },60000)
   }
 
+  /* move to the next question */
   moveToNextQuestion() {
     if(this.state.questionsAnswered < triviaBoard.length) {
       let _index = this.state.questionsAnswered
@@ -149,6 +158,7 @@ import {triviaBoard} from './questions'
     }
   }
 
+  /* renders the view */
   render() {
     let question = (this.state.questionsAnswered === triviaBoard.length) ? {q:'',c:'',a:'',d:''} : triviaBoard[this.state.questionsAnswered]
     if(this.state.start === false) {
