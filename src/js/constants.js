@@ -1,6 +1,7 @@
 
-const timePerQuestion = 180
-
+export const timePerQuestion = 180
+export const noOfOptions = 5
+export const minuteInMs = 60000
 export const alerts = {
   "timeOut"      :  {
     "class" : "d-flex justify-content-center alert alert-warning alert-dismissible fade show",
